@@ -16,7 +16,7 @@ const _dirname = path.resolve();
 console.log(_dirname);
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: process.env.URL,
     credentials: true,
 }
 app.use(cors(corsOptions));
@@ -32,7 +32,10 @@ app.use('/api/v1/post', postRoute);
 app.use('/api/v1/comment', commentRoute);
 app.use('/api/v1/message', messageRoute);
 
-app.use(express.static(path.join(_dirname, "/frontend/dist")))
+app.use(express.static(path.join(_dirname, "/frontend/dist")));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+})
 
 
 
