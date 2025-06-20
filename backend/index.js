@@ -31,7 +31,7 @@ app.use('/api/v1/post', postRoute);
 app.use('/api/v1/message', messageRoute);
 
 app.use(express.static(path.join(_dirname, "/frontend/dist")));
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
 })
 
